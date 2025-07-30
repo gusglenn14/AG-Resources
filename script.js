@@ -115,7 +115,7 @@ function calculateRoyalty() {
     }
 }
 
-// Enhanced Form submission with EmailJS - Dual Email System
+// Enhanced Form submission with EmailJS - Fixed Error Handling
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize EmailJS with your public key
     emailjs.init("vrz7g2Y8eQrz1d3RH"); 
@@ -179,38 +179,65 @@ async function handleFormSubmission(e) {
             support_phone: '(512) 847-WIND'
         };
         
-        // Send both emails simultaneously
-        const [contactUsResult, autoReplyResult] = await Promise.all([
-            emailjs.send('service_b37hchq', 'template_5jw19ar', contactUsParams),
-            emailjs.send('service_b37hchq', 'template_q3zw7ma', autoReplyParams)
-        ]);
+        // Send both emails with individual error handling
+        let contactUsSuccess = false;
+        let autoReplySuccess = false;
+        let errors = [];
         
-        console.log('Contact Us email sent:', contactUsResult);
-        console.log('Auto Reply email sent:', autoReplyResult);
-        
-        // Success feedback
-        updateButtonState(btn, '✓ Message Sent!', true, '#10b981');
-        showNotification('Your message has been sent successfully! Check your email for confirmation.', 'success');
-        
-        // Reset form after delay
-        setTimeout(() => {
-            form.reset();
-            resetButtonState(btn, originalText);
-        }, 2000);
-        
-    } catch (error) {
-        console.error('Email submission failed:', error);
-        
-        // Check if it's a partial failure
-        if (error.name === 'AggregateError') {
-            console.error('Multiple email errors:', error.errors);
-            showNotification('Message partially sent. Our team has been notified, but your confirmation email may be delayed.', 'warning');
-        } else {
-            showNotification('Failed to send message. Please try again or contact us directly at info@agresources.com', 'error');
+        try {
+            const contactUsResult = await emailjs.send('service_b37hchq', 'template_5jw19ar', contactUsParams);
+            console.log('Contact Us email sent successfully:', contactUsResult);
+            contactUsSuccess = true;
+        } catch (error) {
+            console.error('Contact Us email failed:', error);
+            errors.push('Contact notification failed');
         }
         
-        // Error feedback
+        try {
+            const autoReplyResult = await emailjs.send('service_b37hchq', 'template_q3zw7ma', autoReplyParams);
+            console.log('Auto Reply email sent successfully:', autoReplyResult);
+            autoReplySuccess = true;
+        } catch (error) {
+            console.error('Auto Reply email failed:', error);
+            errors.push('Auto-reply failed');
+        }
+        
+        // Handle results based on success/failure combinations
+        if (contactUsSuccess && autoReplySuccess) {
+            // Both emails sent successfully
+            updateButtonState(btn, '✓ Message Sent!', true, '#10b981');
+            showNotification('Your message has been sent successfully! Check your email for confirmation.', 'success');
+        } else if (contactUsSuccess && !autoReplySuccess) {
+            // Main email sent, auto-reply failed
+            updateButtonState(btn, '✓ Message Sent!', true, '#f59e0b');
+            showNotification('Your message was received! Confirmation email may be delayed.', 'warning');
+        } else if (!contactUsSuccess && autoReplySuccess) {
+            // Auto-reply sent, main email failed (unusual case)
+            updateButtonState(btn, '⚠ Partial Success', true, '#f59e0b');
+            showNotification('Message partially sent. Please call us at (512) 847-WIND to confirm receipt.', 'warning');
+        } else {
+            // Both failed
+            throw new Error('Both emails failed to send');
+        }
+        
+        // Reset form after delay if at least one email succeeded
+        if (contactUsSuccess || autoReplySuccess) {
+            setTimeout(() => {
+                form.reset();
+                resetButtonState(btn, originalText);
+            }, 2000);
+        } else {
+            setTimeout(() => {
+                resetButtonState(btn, originalText);
+            }, 3000);
+        }
+        
+    } catch (error) {
+        console.error('Email submission completely failed:', error);
+        
+        // Complete failure - both emails failed
         updateButtonState(btn, 'Failed - Try Again', false, '#ef4444');
+        showNotification('Failed to send message. Please try again or contact us directly at (512) 847-WIND', 'error');
         
         // Reset button after delay
         setTimeout(() => {
