@@ -115,8 +115,11 @@ function calculateRoyalty() {
     }
 }
 
-// Form submission with animation
+// Form submission with EmailJS
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize EmailJS with your public key
+    emailjs.init("service_b37hchq","template_q3zw7ma"); // Replace with your actual public key
+    
     const form = document.querySelector('form');
     if (form) {
         form.addEventListener('submit', (e) => {
@@ -125,16 +128,29 @@ document.addEventListener('DOMContentLoaded', () => {
             const originalText = btn.innerHTML;
             
             btn.innerHTML = 'Sending...';
+            btn.disabled = true;
             btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
             
-            setTimeout(() => {
-                btn.innerHTML = '✓ Message Sent!';
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.style.background = 'linear-gradient(135deg, var(--neon-blue), var(--electric-blue))';
-                    form.reset();
-                }, 2000);
-            }, 1500);
+            // Send email using EmailJS
+            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form)
+                .then(() => {
+                    btn.innerHTML = '✓ Message Sent!';
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                        btn.style.background = 'linear-gradient(135deg, var(--neon-blue), var(--electric-blue))';
+                        form.reset();
+                    }, 2000);
+                })
+                .catch((error) => {
+                    console.error('Email failed:', error);
+                    btn.innerHTML = 'Failed - Try Again';
+                    btn.disabled = false;
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.background = 'linear-gradient(135deg, var(--neon-blue), var(--electric-blue))';
+                    }, 3000);
+                });
         });
     }
 });
