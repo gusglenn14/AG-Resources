@@ -115,44 +115,165 @@ function calculateRoyalty() {
     }
 }
 
-// Form submission with EmailJS
+// Enhanced Form submission with EmailJS
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize EmailJS with your public key
     emailjs.init("vrz7g2Y8eQrz1d3RH"); 
     
-    const form = document.querySelector('form');
+    const form = document.querySelector('#contact-form');
     if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = form.querySelector('button[type="submit"]');
-            const originalText = btn.innerHTML;
-            
-            btn.innerHTML = 'Sending...';
-            btn.disabled = true;
-            btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-            
-            // Send email using EmailJS with your actual IDs
-            emailjs.sendForm('service_b37hchq', 'template_q3zw7ma', form)
-                .then(() => {
-                    btn.innerHTML = '✓ Message Sent!';
-                    setTimeout(() => {
-                        btn.innerHTML = originalText;
-                        btn.disabled = false;
-                        btn.style.background = 'linear-gradient(135deg, var(--neon-blue), var(--electric-blue))';
-                        form.reset();
-                    }, 2000);
-                })
-                .catch((error) => {
-                    console.error('Email failed:', error);
-                    btn.innerHTML = 'Failed - Try Again';
-                    btn.disabled = false;
-                    setTimeout(() => {
-                        btn.innerHTML = originalText;
-                        btn.style.background = 'linear-gradient(135deg, var(--neon-blue), var(--electric-blue))';
-                    }, 3000);
-                });
-        });
+        form.addEventListener('submit', handleFormSubmission);
     }
 });
+
+async function handleFormSubmission(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.innerHTML;
+    
+    // Validate form data
+    if (!validateForm(form)) {
+        return;
+    }
+    
+    // Update button state
+    updateButtonState(btn, 'Sending...', true);
+    
+    try {
+        // Prepare form data
+        const formData = new FormData(form);
+        const templateParams = {
+            from_name: formData.get('name'),
+            from_email: formData.get('email'),
+            phone: formData.get('phone') || 'Not provided',
+            property_location: formData.get('property') || 'Not provided',
+            message: formData.get('message'),
+            to_name: 'AG Resources Team'
+        };
+        
+        // Send email using EmailJS
+        await emailjs.send('service_b37hchq', 'template_q3zw7ma', templateParams);
+        
+        // Success feedback
+        updateButtonState(btn, '✓ Message Sent!', true, '#10b981');
+        showNotification('Your message has been sent successfully!', 'success');
+        
+        // Reset form after delay
+        setTimeout(() => {
+            form.reset();
+            resetButtonState(btn, originalText);
+        }, 2000);
+        
+    } catch (error) {
+        console.error('Email submission failed:', error);
+        
+        // Error feedback
+        updateButtonState(btn, 'Failed - Try Again', false, '#ef4444');
+        showNotification('Failed to send message. Please try again or contact us directly.', 'error');
+        
+        // Reset button after delay
+        setTimeout(() => {
+            resetButtonState(btn, originalText);
+        }, 3000);
+    }
+}
+
+function validateForm(form) {
+    const requiredFields = form.querySelectorAll('[required]');
+    let isValid = true;
+    
+    requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+            field.style.borderColor = '#ef4444';
+            field.style.boxShadow = '0 0 10px rgba(239, 68, 68, 0.3)';
+            isValid = false;
+        } else {
+            field.style.borderColor = '';
+            field.style.boxShadow = '';
+        }
+    });
+    
+    // Validate email format
+    const emailField = form.querySelector('[type="email"]');
+    if (emailField && emailField.value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailField.value)) {
+            emailField.style.borderColor = '#ef4444';
+            emailField.style.boxShadow = '0 0 10px rgba(239, 68, 68, 0.3)';
+            isValid = false;
+        }
+    }
+    
+    if (!isValid) {
+        showNotification('Please fill in all required fields correctly.', 'error');
+    }
+    
+    return isValid;
+}
+
+function updateButtonState(btn, text, disabled, backgroundColor = null) {
+    btn.innerHTML = text;
+    btn.disabled = disabled;
+    if (backgroundColor) {
+        btn.style.background = backgroundColor;
+    }
+}
+
+function resetButtonState(btn, originalText) {
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+    btn.style.background = 'linear-gradient(135deg, var(--neon-blue), var(--electric-blue))';
+}
+
+function showNotification(message, type) {
+    // Remove existing notifications
+    const existingNotification = document.querySelector('.form-notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Create new notification
+    const notification = document.createElement('div');
+    notification.className = `form-notification ${type}`;
+    notification.textContent = message;
+    
+    // Style the notification
+    Object.assign(notification.style, {
+        position: 'fixed',
+        top: '20px',
+        right: '20px',
+        padding: '15px 20px',
+        borderRadius: '10px',
+        color: 'white',
+        fontWeight: '500',
+        zIndex: '10000',
+        maxWidth: '400px',
+        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
+        transform: 'translateX(400px)',
+        transition: 'transform 0.3s ease'
+    });
+    
+    if (type === 'success') {
+        notification.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+    } else {
+        notification.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+    }
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Remove after delay
+    setTimeout(() => {
+        notification.style.transform = 'translateX(400px)';
+        setTimeout(() => notification.remove(), 300);
+    }, 4000);
+}
 
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
