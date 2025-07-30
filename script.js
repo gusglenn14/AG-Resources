@@ -51,13 +51,16 @@ function showPage(pageId) {
     });
     
     setTimeout(() => {
-        // Double-check targetPage still exists
-        if (targetPage) {
-            targetPage.classList.add('active');
-            window.scrollTo(0, 0);
-            animateOnScroll();
-            updateScrollProgress();
-        }
+        // Ensure we remove active from all pages first
+        pages.forEach(page => page.classList.remove('active'));
+        
+        // Then activate the target page
+        targetPage.classList.add('active');
+        targetPage.style.opacity = '1';
+        targetPage.style.transform = 'translateX(0)';
+        window.scrollTo(0, 0);
+        animateOnScroll();
+        updateScrollProgress();
     }, 300);
 }
 
