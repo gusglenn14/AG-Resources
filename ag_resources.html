@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="16x16" href="AG_Logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AG Resources - Revolutionary Wind and Solar Energy Solutions</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #1e40af;
+            --accent-blue: #60a5fa;
+            --electric-blue: #3b82f6;
+            --neon-blue: #38bdf8;
+            --neon-green: #00ff88;
+            --electric-green: #00d468;
+            --primary-green: #059669;
+            --secondary-green: #047857;
+            --pure-white: #ffffff;
+            --off-white: #f8fafc;
+            --light-gray: #e2e8f0;
+            --dark-gray: #374151;
+            --pure-black: #1f2937;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.6;
+            color: var(--pure-black);
+            overflow-x: hidden;
+            background: var(--pure-white);
+        }
+
+        /* Revolutionary Navigation */
+        nav {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            right: 1rem;
+            background: rgba(30, 58, 138, 0.95);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            border-radius: 50px;
+            z-index: 1000;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            padding: 1rem 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(20px);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav:hover {
+            background: rgba(30, 58, 138, 0.98);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--neon-blue), var(--electric-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            color: var(--pure-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .nav-links li a:hover {
+            background: var(--glass-bg);
+            color: var(--neon-blue);
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            gap: 4px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--pure-white);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 90px;
+            left: 1rem;
+            right: 1rem;
+            background: rgba(30, 58, 138, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            z-index: 999;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mobile-menu.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu a {
+            color: var(--pure-white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 1rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            display: block;
+            text-align: center;
+        }
+
+        .mobile-menu a:hover {
+            background: var(--glass-bg);
+            color: var(--neon-blue);
+        }
+
+        /* Pages with 3D Transform */
+        .page {
+            display: none;
+            min-height: 100vh;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page.active {
+            display: block;
+            animation: pageSlideIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes pageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateZ(-100px) rotateX(5deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateZ(0) rotateX(0);
+            }
+        }
+
+        /* Mind-blowing Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--pure-white);
+            position: relative;
+            overflow: hidden;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(96, 165, 250, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+                linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+        }
+
+        .hero-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 48%, var(--neon-blue) 49%, var(--neon-blue) 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, var(--electric-blue) 49%, var(--electric-blue) 51%, transparent 52%);
+            background-size: 200px 200px;
+            animation: gridMove 20s linear infinite;
+            opacity: 0.05;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translateX(-200px) translateY(-200px); }
+            100% { transform: translateX(200px) translateY(200px); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            z-index: 3;
+            position: relative;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, var(--neon-blue) 50%, var(--electric-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.05em;
+            line-height: 0.9;
+            position: relative;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.5)); }
+            100% { filter: drop-shadow(0 0 40px rgba(56, 189, 248, 0.8)); }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            font-weight: 400;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            color: var(--pure-white);
+            padding-left: 1rem;
+        }
+
+        .hero-subtitle::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 4px;
+            height: 60%;
+            background: linear-gradient(to bottom, var(--neon-blue), var(--electric-blue));
+            transform: translateY(-50%);
+            border-radius: 2px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: translateY(-50%) scaleY(1); }
+            50% { opacity: 1; transform: translateY(-50%) scaleY(1.2); }
+        }
+
+        /* Futuristic Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Space Grotesk', sans-serif;
+            text-align: center;
+            white-space: nowrap;
+            min-height: 60px;
+            touch-action: manipulation;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--neon-blue), var(--electric-blue));
+            color: var(--pure-white);
+            box-shadow: 
+                0 8px 32px rgba(56, 189, 248, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 20px 60px rgba(56, 189, 248, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--glass-bg);
+            color: var(--pure-white);
+            border: 2px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--neon-blue);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Morphing Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 clamp(1rem, 5vw, 2rem);
+        }
+
+        .section {
+            padding: clamp(4rem, 8vw, 8rem) 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: clamp(3rem, 6vw, 5rem);
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            position: relative;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--electric-blue));
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* Service Cards with simplified animations */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--pure-white);
+            padding: clamp(2rem, 5vw, 3rem);
+            border-radius: 20px;
+            border: 1px solid var(--light-gray);
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--neon-blue);
+        }
+
+        .service-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card p {
+            font-size: clamp(1rem, 2.2vw, 1.1rem);
+            line-height: 1.8;
+            color: var(--dark-gray);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Floating Stats with Glassmorphism */
+        .stats-section {
+            background: #f1f5f9;
+            padding: clamp(4rem, 8vw, 6rem) 0;
+            border-top: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: clamp(2rem, 5vw, 3rem) clamp(1rem, 3vw, 2rem);
+            background: var(--pure-white);
+            border: 1px solid var(--light-gray);
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(96, 165, 250, 0.2);
+        }
+
+        .stat-number {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--neon-blue), var(--electric-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-label {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--dark-gray);
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Royalties Page Hero */
+        .royalties-hero {
+            padding: clamp(6rem, 12vw, 8rem) 0;
+            text-align: center;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(96, 165, 250, 0.2) 0%, transparent 70%),
+                var(--primary-blue);
+            color: var(--pure-white);
+        }
+
+        .royalties-hero h1 {
+            font-size: clamp(3rem, 7vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, var(--neon-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Interactive Calculator */
+        .calculator-section {
+            padding: clamp(4rem, 8vw, 6rem) 0;
+            background: var(--secondary-blue);
+            color: var(--pure-white);
+        }
+
+        .calculator {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: clamp(2rem, 5vw, 4rem);
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calculator::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--neon-blue), var(--electric-blue));
+            opacity: 0.05;
+            border-radius: 30px;
+        }
+
+        .calc-input {
+            width: 100%;
+            padding: 1.5rem;
+            border: 2px solid var(--glass-border);
+            border-radius: 15px;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            margin-bottom: 1.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            color: var(--pure-white);
+            font-family: 'JetBrains Mono', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .calc-input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        }
+
+        .calc-input::placeholder {
+            color: var(--light-gray);
+        }
+
+        .calc-result {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--neon-blue);
+            margin-top: 2rem;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 20px var(--neon-blue); }
+            100% { text-shadow: 0 0 30px var(--neon-blue), 0 0 40px var(--electric-blue); }
+        }
+
+        /* Value Grid with Hover Effects */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: clamp(2rem, 5vw, 3rem);
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(96, 165, 250, 0.2);
+            border-color: var(--neon-blue);
+        }
+
+        .value-icon {
+            width: clamp(60px, 12vw, 80px);
+            height: clamp(60px, 12vw, 80px);
+            background: linear-gradient(135deg, var(--neon-blue), var(--electric-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--pure-white);
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.3);
+        }
+
+        .value-card h3 {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            font-size: clamp(0.9rem, 2.2vw, 1rem);
+            line-height: 1.6;
+        }
+
+        /* Timeline with 3D Effects */
+        .timeline {
+            max-width: 1000px;
+            margin: 4rem auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--primary-blue);
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 4rem;
+            position: relative;
+            flex-direction: column;
+            margin-left: 60px;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: var(--secondary-blue);
+            backdrop-filter: blur(20px);
+            padding: clamp(2rem, 5vw, 3rem);
+            border-radius: 20px;
+            margin: 0;
+            border: 8px solid var(--secondary-blue);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(96, 165, 250, 0.2);
+        }
+
+        .timeline-content h3 {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content p {
+            font-size: clamp(0.9rem, 2.2vw, 1rem);
+            line-height: 1.6;
+        }
+
+        .timeline-number {
+            position: absolute;
+            left: 30px;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--electric-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pure-white);
+            font-weight: 700;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.4);
+            border: 4px solid var(--primary-blue);
+        }
+
+        /* Contact Form with Glassmorphism */
+        .contact-hero {
+            padding: clamp(4rem, 8vw, 6rem) 0;
+            text-align: center;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(96, 165, 250, 0.2) 0%, transparent 70%),
+                var(--primary-blue);
+            color: var(--pure-white);
+        }
+
+        .contact-hero h1 {
+            font-size: clamp(3rem, 7vw, 5rem);
+            margin-bottom: 2rem;
+        }
+
+        .contact-hero p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-form {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: clamp(2rem, 5vw, 4rem);
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--neon-blue), var(--electric-blue));
+            opacity: 0.05;
+            border-radius: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--pure-white);
+            font-weight: 600;
+            font-size: clamp(1rem, 2.2vw, 1.1rem);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.5rem;
+            border: 2px solid var(--glass-border);
+            border-radius: 15px;
+            font-size: clamp(0.9rem, 2.2vw, 1rem);
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            color: var(--pure-white);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--light-gray);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        }
+
+        .contact-info h3 {
+            color: var(--pure-white);
+            margin-bottom: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+        }
+
+        .contact-item {
+            margin-bottom: 2rem;
+            padding: clamp(1.5rem, 4vw, 2rem);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(96, 165, 250, 0.1);
+        }
+
+        .contact-item h4 {
+            color: var(--neon-blue);
+            margin-bottom: 1rem;
+            font-size: clamp(1.1rem, 2.8vw, 1.3rem);
+        }
+
+        .contact-item p {
+            color: var(--light-gray);
+            font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+            line-height: 1.6;
+        }
+
+        /* About Page */
+        .mission-section {
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(96, 165, 250, 0.2) 0%, transparent 50%),
+                var(--primary-blue);
+            padding: clamp(6rem, 12vw, 8rem) 0;
+            text-align: center;
+            color: var(--pure-white);
+        }
+
+        .mission-section h1 {
+            font-size: clamp(3rem, 7vw, 5rem);
+            margin-bottom: 2rem;
+        }
+
+        .mission-section p {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            max-width: 900px;
+            margin: 0 auto 2rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: clamp(2rem, 5vw, 3rem);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(96, 165, 250, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                top: 0.5rem;
+                left: 0.5rem;
+                right: 0.5rem;
+                border-radius: 20px;
+                padding: 1rem;
+            }
+            
+            .nav-container {
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            .mobile-menu {
+                top: 80px;
+                left: 0.5rem;
+                right: 0.5rem;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .hero {
+                min-height: 100vh;
+                padding-top: 120px;
+            }
+            
+            .hero-content {
+                padding: 0 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .btn {
+                padding: 1rem 2rem;
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                margin-left: 60px;
+            }
+            
+            .timeline-number {
+                left: 30px;
+            }
+
+            .value-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .contact-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .timeline::before {
+                left: 50%;
+            }
+
+            .timeline-item {
+                flex-direction: row;
+                margin-left: 0;
+            }
+
+            .timeline-item:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+
+            .timeline-content {
+                margin: 0 3rem;
+            }
+
+            .timeline-number {
+                left: 50%;
+            }
+        }
+
+        /* Advanced scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scroll progress indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--electric-blue));
+            z-index: 9999;
+            transition: width 0.1s ease;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+        }
+
+        /* Touch improvements */
+        @media (hover: none) {
+            .btn:hover,
+            .service-card:hover,
+            .stat-card:hover,
+            .value-card:hover,
+            .timeline-content:hover,
+            .contact-item:hover,
+            .value-item:hover {
+                transform: none;
+            }
+
+            .btn:active {
+                transform: scale(0.95);
+            }
+
+            /* Prevent navigation hover effects on touch */
+            nav:hover {
+                background: rgba(30, 58, 138, 0.95);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+                transform: none;
+            }
+        }
+
+        .text-sized {
+            height: 16em;        
+            width: auto;       
+            vertical-align: baseline; 
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress"></div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="showPage('home')">AG Resources</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('royalties')">Royalties</a></li>
+                <li><a href="#" onclick="showPage('about')">About Us</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#" onclick="showPage('royalties'); closeMobileMenu();">Royalties</a></li>
+            <li><a href="#" onclick="showPage('about'); closeMobileMenu();">About Us</a></li>
+            <li><a href="#" onclick="showPage('contact'); closeMobileMenu();">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <img src="AG_Logo.png" alt="AG Logo" class="text-sized">
+                <h1 class="hero-title">AG Resources</h1>
+                <p class="hero-subtitle">Revolutionizing agricultural landscapes through cutting-edge wind and solar energy development and premium royalty investment solutions</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary" onclick="showPage('royalties')">
+                        Explore Royalties →
+                    </a>
+                    <a href="#" class="btn btn-secondary" onclick="showPage('about')">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2>Revolutionary Energy Solutions</h2>
+                    <p>We specialize in creating sustainable value through strategic wind and solar energy development and sophisticated royalty investment programs powered by cutting-edge technology</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Advanced Development</h3>
+                        <p>Comprehensive development services leveraging AI-powered site assessment, advanced meteorological modeling, and precision engineering to maximize energy output while preserving agricultural operations and community values.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Premium Royalty Purchasing</h3>
+                        <p>Transform future royalty streams into immediate capital with our transparent, data-driven purchasing program. We provide sophisticated financial modeling and competitive valuations backed by over $50 million in completed transactions.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Strategic Innovation</h3>
+                        <p>Expert advisory services combining renewable energy expertise, agricultural land optimization, and financial engineering. Our consultants deliver transformative solutions that unlock hidden value in agricultural wind or solar assets.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2>Proven Excellence</h2>
+                    <p>Our success is measured by the transformative value we create for landowners and communities nationwide</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card animate-on-scroll">
+                        <div class="stat-number">$50M+</div>
+                        <div class="stat-label">Royalties Purchased</div>
+                    </div>
+                    <div class="stat-card animate-on-scroll">
+                        <div class="stat-number">300+</div>
+                        <div class="stat-label">Completed Transactions</div>
+                    </div>
+                    <div class="stat-card animate-on-scroll">
+                        <div class="stat-number">1,500MW</div>
+                        <div class="stat-label">Projects Developed</div>
+                    </div>
+                    <div class="stat-card animate-on-scroll">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years Innovation</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Royalties Page -->
+    <div id="royalties" class="page">
+        <section class="royalties-hero">
+            <div class="container">
+                <h1>Royalty Solutions</h1>
+                <p style="font-size: clamp(1rem, 2.5vw, 1.4rem); max-width: 900px; margin: 0 auto; color: var(--light-gray);">
+                    AG Resources is a transparent, experienced, and well-funded royalty buyer. We provide landowners with the opportunity to receive substantial lump sum payments instead of waiting for periodic distributions over decades.
+                </p>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--secondary-blue);">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2 style="color: var(--pure-white); background: none; -webkit-text-fill-color: var(--pure-white);">Why Choose Lump Sum Investment?</h2>
+                    <p style="color: var(--light-gray);">Converting your royalties unlocks significant investment opportunities that can generate substantially more wealth over time than periodic payments</p>
+                </div>
+                <div class="value-grid">
+                    <div class="value-card animate-on-scroll">
+                        <div class="value-icon">💰</div>
+                        <h3 style="color: var(--pure-white);">Immediate Capital Access</h3>
+                        <p style="color: var(--light-gray);">Receive substantial lump sum payments instead of waiting decades for periodic royalty distributions. Access capital when you need it most for expansion, investments, or personal financial goals.</p>
+                    </div>
+                    <div class="value-card animate-on-scroll">
+                        <div class="value-icon">📈</div>
+                        <h3 style="color: var(--pure-white);">Superior Investment Returns</h3>
+                        <p style="color: var(--light-gray);">A $100,000 lump sum invested at 8% annual return grows to approximately $2.3 million over 40 years - often exceeding total royalty payments while providing complete liquidity and flexibility.</p>
+                    </div>
+                    <div class="value-card animate-on-scroll">
+                        <div class="value-icon">🛡️</div>
+                        <h3 style="color: var(--pure-white);">Risk Mitigation</h3>
+                        <p style="color: var(--light-gray);">Eliminate exposure to power price volatility, grid reliability issues, turbine maintenance costs, and changing energy policies that could significantly impact future royalty payments.</p>
+                    </div>
+                    <div class="value-card animate-on-scroll">
+                        <div class="value-icon">🌾</div>
+                        <h3 style="color: var(--pure-white);">Agricultural Expansion</h3>
+                        <p style="color: var(--light-gray);">Many landowners use royalty proceeds to acquire additional farmland, upgrade equipment, or expand operations - creating a new source of equity for strategic agricultural investments.</p>
+                    </div>
+                    <div class="value-card animate-on-scroll">
+                        <div class="value-icon">🔄</div>
+                        <h3 style="color: var(--pure-white);">Flexible Options</h3>
+                        <p style="color: var(--light-gray);">Sell your entire royalty interest or retain partial ownership. We offer customized solutions that align with your specific financial goals and risk tolerance.</p>
+                    </div>
+                    <div class="value-card animate-on-scroll">
+                        <div class="value-icon">📊</div>
+                        <h3 style="color: var(--pure-white);">Transparent Valuation</h3>
+                        <p style="color: var(--light-gray);">Receive detailed financial analysis of your turbines' production potential, even if you decide not to sell. Our comprehensive evaluation provides valuable insights into your asset's market value.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2>Our Proven Process</h2>
+                    <p>A streamlined, transparent approach that delivers results</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-content">
+                            <h3 style="color: var(--pure-white); margin-bottom: 1rem;">Initial Assessment</h3>
+                            <p style="color: var(--light-gray);">Comprehensive evaluation of your property, existing or planned wind installations, lease agreements, and production potential using advanced modeling techniques.</p>
+                        </div>
+                        <div class="timeline-number">1</div>
+                    </div>
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-content">
+                            <h3 style="color: var(--pure-white); margin-bottom: 1rem;">Market Analysis</h3>
+                            <p style="color: var(--light-gray);">Our experts conduct comprehensive market research, revenue projections, and risk assessment using proprietary financial models and industry data.</p>
+                        </div>
+                        <div class="timeline-number">2</div>
+                    </div>
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-content">
+                            <h3 style="color: var(--pure-white); margin-bottom: 1rem;">Detailed Valuation</h3>
+                            <p style="color: var(--light-gray);">Receive a comprehensive analysis report detailing your royalty interest value, production forecasts, and market comparables - valuable information regardless of your decision.</p>
+                        </div>
+                        <div class="timeline-number">3</div>
+                    </div>
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-content">
+                            <h3 style="color: var(--pure-white); margin-bottom: 1rem;">Premium Offer</h3>
+                            <p style="color: var(--light-gray);">We present a competitive, fair market offer based on our analysis, backed by our track record of over $50 million in successful transactions.</p>
+                        </div>
+                        <div class="timeline-number">4</div>
+                    </div>
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-content">
+                            <h3 style="color: var(--pure-white); margin-bottom: 1rem;">Seamless Closing</h3>
+                            <p style="color: var(--light-gray);">Streamlined transaction process with experienced legal support, ensuring a smooth transfer and immediate access to your capital.</p>
+                        </div>
+                        <div class="timeline-number">5</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="calculator-section">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 style="color: var(--pure-white); margin-bottom: 1rem; font-size: clamp(2rem, 5vw, 3rem);">Royalty Value Calculator</h2>
+                    <p style="margin-bottom: 2rem; color: var(--light-gray); font-size: clamp(1rem, 2.5vw, 1.2rem);">Get an estimated value of your wind royalty interest using our advanced valuation model</p>
+                    <div class="calculator">
+                        <input type="number" class="calc-input" id="turbines" placeholder="Number of turbines on your property">
+                        <input type="number" class="calc-input" id="capacity" placeholder="Average turbine capacity (MW)">
+                        <input type="number" class="calc-input" id="royalty" placeholder="Royalty percentage (%)">
+                        <input type="number" class="calc-input" id="power-price" placeholder="Average power price ($/MWh)" value="45">
+                        <button class="btn btn-primary" onclick="calculateRoyalty()" style="width: 100%; margin-top: 1rem;">
+                            Calculate Estimated Value
+                        </button>
+                        <div class="calc-result" id="result"></div>
+                        <p style="font-size: clamp(0.8rem, 2vw, 1rem); color: var(--light-gray); margin-top: 1.5rem;">
+                            *This estimate is based on industry averages. Contact us for a comprehensive evaluation and actual offer.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div style="text-align: center; margin: 4rem 0;">
+                    <p style="font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--dark-gray); margin-bottom: 2rem;">
+                        We've completed hundreds of successful transactions across diverse projects nationwide, with total payments exceeding $50 million to landowners.
+                    </p>
+                    <a href="#" class="btn btn-primary" onclick="showPage('contact')">
+                        Request Free Evaluation
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <section class="mission-section">
+            <div class="container">
+                <h1>About AG Resources</h1>
+                <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                    <p style="margin-bottom: 2rem;">
+                        AG Resources represents the cutting edge of agricultural energy development and royalty investment. We bridge the gap between sustainable energy innovation and agricultural land stewardship, creating transformative value for landowners while advancing renewable energy goals.
+                    </p>
+                    <p>
+                        Our expertise spans renewable energy development, financial markets, and agricultural land management, delivering unparalleled results through innovation, transparency, and deep respect for agricultural communities.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2>Our Leadership</h2>
+                    <p>Meet the experienced professionals driving innovation in agricultural energy</p>
+                </div>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div style="background: var(--pure-white); padding: clamp(2rem, 5vw, 4rem); border-radius: 25px; border: 1px solid var(--light-gray); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 0.5rem; font-size: clamp(1.2rem, 3vw, 1.8rem);">FOUNDER AND PRESIDENT</h3>
+                        <h4 style="color: var(--neon-blue); margin-bottom: 2rem; font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 700;">Gizzardo</h4>
+                        <p style="font-size: clamp(1rem, 2.5vw, 1.2rem); line-height: 1.8; color: var(--dark-gray);">
+                            Gizzardo is a licensed attorney based in Dallas, TX with over ten years experience in the wind industry. After several years developing projects for RES Americas, William struck out on his own to pursue opportunities in the renewable energy business. He has helped install over 1300MW of wind power in the US. Prior to law school, William had a ten year career in the commercial real estate business.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2>Our Track Record</h2>
+                    <p style="color: var(--dark-gray);">Demonstrating excellence through measurable results and industry leadership</p>
+                </div>
+                <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                    <p style="font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--dark-gray); margin-bottom: 3rem;">
+                        With over 15 years of experience in renewable energy development and financial markets, our team has established AG Resources as a trusted leader in agricultural wind energy solutions. We've successfully completed over 300 transactions, developed more than 1,500MW of wind capacity, and invested over $50 million in landowner royalties.
+                    </p>
+                    <p style="font-size: clamp(0.9rem, 2.2vw, 1.1rem); color: var(--dark-gray);">
+                        Our comprehensive approach combines technical expertise, market knowledge, and deep respect for agricultural traditions to deliver exceptional results that benefit landowners, communities, and the environment.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <section class="contact-hero">
+            <div class="container">
+                <h1>Get In Touch</h1>
+                <p style="max-width: 800px; margin: 0 auto;">
+                    Ready to explore your wind royalty options or discuss wind development opportunities? Our team of experts is here to provide personalized guidance and comprehensive solutions.
+                </p>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--primary-blue);">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-form">
+                        <h3 style="color: var(--pure-white); margin-bottom: 2rem; font-size: clamp(1.5rem, 4vw, 2rem);">Send Us a Message</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                            </div>
+                            <div class="form-group">
+                                <label for="property">Property Location</label>
+                                <input type="text" id="property" name="property" placeholder="City, State">
+                            </div>
+                            <div class="form-group">
+                                <label for="interest">Area of Interest</label>
+                                <select id="interest" name="interest" style="background: var(--glass-bg); color: var(--pure-white);">
+                                    <option value="">Select an option</option>
+                                    <option value="wind-royalties">Royalty Purchase</option>
+                                    <option value="development">Project Development</option>
+                                    <option value="consulting">Strategic Consulting</option>
+                                    <option value="evaluation">Free Property Evaluation</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="turbines">Number of Turbines (if applicable)</label>
+                                <input type="number" id="turbines-contact" name="turbines" placeholder="Enter number of turbines">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="4" placeholder="Tell us about your property, goals, and how we can help you"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <div class="contact-item">
+                            <h4>🏢 Corporate Headquarters</h4>
+                            <p>AG Resources Innovation Center<br>
+                            1247 Renewable Energy Plaza<br>
+                            Austin, TX 78701</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>📞 Phone & Text</h4>
+                            <p><strong>Main Line:</strong> (512) 847-WIND<br>
+                            <strong>Royalties:</strong> (512) 847-9463<br>
+                            <strong>Development:</strong> (512) 847-3387</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>✉️ Email Contacts</h4>
+                            <p><strong>General Inquiries:</strong> info@agresources.com<br>
+                            <strong>Royalty Sales:</strong> royalties@agresources.com<br>
+                            <strong>Development:</strong> development@agresources.com</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>🕒 Business Hours</h4>
+                            <p><strong>Monday - Friday:</strong> 7:00 AM - 7:00 PM CST<br>
+                            <strong>Saturday:</strong> 9:00 AM - 3:00 PM CST<br>
+                            <strong>Sunday:</strong> Emergency consultations only</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>⚡ Quick Response Guarantee</h4>
+                            <p>We respond to all inquiries within 4 business hours. For urgent matters, call our main line and request immediate assistance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 4rem; padding: clamp(2rem, 5vw, 3rem); background: var(--glass-bg); backdrop-filter: blur(20px); border-radius: 25px; border: 1px solid var(--glass-border);">
+                    <h3 style="color: var(--pure-white); margin-bottom: 1.5rem; font-size: clamp(1.3rem, 3.5vw, 1.8rem);">Ready to Get Started?</h3>
+                    <p style="color: var(--light-gray); font-size: clamp(0.9rem, 2.2vw, 1.1rem); margin-bottom: 2rem;">
+                        Whether you're interested in selling your wind or solar royalties or exploring development opportunities, we're here to provide expert guidance and competitive solutions tailored to your specific needs.
+                    </p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="tel:512-847-9463" class="btn btn-primary">Call Now: (512) 847-WIND</a>
+                        <a href="mailto:info@agresources.com" class="btn btn-secondary">Email Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Mobile menu functions
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            mobileMenu.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            mobileMenu.classList.remove('active');
+            toggle.classList.remove('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('nav');
+            
+            if (!nav.contains(event.target) && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+
+        // Page navigation with effects
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            const targetPage = document.getElementById(pageId);
+            
+            // Close mobile menu when navigating
+            closeMobileMenu();
+            
+            pages.forEach(page => {
+                if (page.classList.contains('active')) {
+                    page.style.opacity = '0';
+                    page.style.transform = 'translateX(-50px)';
+                    setTimeout(() => {
+                        page.classList.remove('active');
+                    }, 300);
+                }
+            });
+            
+            setTimeout(() => {
+                targetPage.classList.add('active');
+                window.scrollTo(0, 0);
+                animateOnScroll();
+                updateScrollProgress();
+            }, 300);
+        }
+
+        // Scroll progress indicator
+        function updateScrollProgress() {
+            const progress = document.querySelector('.scroll-progress');
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progress.style.width = scrollPercent + '%';
+        }
+
+        // Enhanced scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animated');
+                        }, index * 100);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            elements.forEach(el => {
+                el.classList.remove('animated');
+                observer.observe(el);
+            });
+        }
+
+        // Advanced calculator
+        function calculateRoyalty() {
+            const turbines = document.getElementById('turbines').value;
+            const capacity = document.getElementById('capacity').value;
+            const royalty = document.getElementById('royalty').value;
+            const powerPrice = document.getElementById('power-price').value || 45;
+            
+            if (turbines && capacity && royalty) {
+                // Advanced calculation with capacity factor and annual production
+                const capacityFactor = 0.35; // Industry average
+                const hoursPerYear = 8760;
+                const annualProduction = turbines * capacity * capacityFactor * hoursPerYear;
+                const annualRevenue = annualProduction * powerPrice;
+                const annualRoyalty = annualRevenue * (royalty / 100);
+                const estimatedValue = annualRoyalty * 12; // 12x multiplier for lump sum
+                
+                const result = document.getElementById('result');
+                result.innerHTML = `$${estimatedValue.toLocaleString()}`;
+                result.style.animation = 'none';
+                setTimeout(() => result.style.animation = 'glow 2s ease-in-out infinite alternate', 10);
+            }
+        }
+
+        // Form submission with animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const btn = form.querySelector('button[type="submit"]');
+                    const originalText = btn.innerHTML;
+                    
+                    btn.innerHTML = 'Sending...';
+                    btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = '✓ Message Sent!';
+                        setTimeout(() => {
+                            btn.innerHTML = originalText;
+                            btn.style.background = 'linear-gradient(135deg, var(--neon-blue), var(--electric-blue))';
+                            form.reset();
+                        }, 2000);
+                    }, 1500);
+                });
+            }
+        });
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            animateOnScroll();
+            
+            // Scroll event listeners
+            window.addEventListener('scroll', () => {
+                updateScrollProgress();
+            });
+
+            // Prevent zoom on double tap for iOS
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function (event) {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+
+            // Add simplified animations to service cards for touch devices
+            if ('ontouchstart' in window) {
+                document.querySelectorAll('.service-card, .stat-card, .value-card').forEach(card => {
+                    card.addEventListener('touchstart', () => {
+                        card.style.transform = 'scale(0.98)';
+                    });
+                    
+                    card.addEventListener('touchend', () => {
+                        card.style.transform = 'scale(1)';
+                    });
+                });
+            } else {
+                // Mouse interactions for desktop
+                document.querySelectorAll('.service-card').forEach((card, index) => {
+                    card.addEventListener('mouseenter', () => {
+                        card.style.transform = 'translateY(-10px) scale(1.02)';
+                    });
+                    
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = 'translateY(0) scale(1)';
+                    });
+                });
+
+                // Enhanced hover effects for value cards
+                document.querySelectorAll('.value-card').forEach(card => {
+                    card.addEventListener('mouseenter', () => {
+                        card.style.transform = 'translateY(-15px) scale(1.02)';
+                        card.style.boxShadow = '0 25px 60px rgba(96, 165, 250, 0.3)';
+                    });
+                    
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = 'translateY(0) scale(1)';
+                        card.style.boxShadow = 'none';
+                    });
+                });
+            }
+
+            // Add interactive effects to buttons
+            document.querySelectorAll('.btn').forEach(btn => {
+                if ('ontouchstart' in window) {
+                    btn.addEventListener('touchstart', () => {
+                        btn.style.transform = 'scale(0.95)';
+                    });
+                    
+                    btn.addEventListener('touchend', () => {
+                        btn.style.transform = 'scale(1)';
+                    });
+                } else {
+                    btn.addEventListener('mouseenter', () => {
+                        btn.style.transform = 'translateY(-5px) scale(1.05)';
+                    });
+                    
+                    btn.addEventListener('mouseleave', () => {
+                        btn.style.transform = 'translateY(0) scale(1)';
+                    });
+                }
+            });
+
+            // Auto-animate timeline on scroll
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                item.style.animationDelay = index * 0.2 + 's';
+            });
+        });
+
+        // Handle orientation changes
+        window.addEventListener('orientationchange', function() {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+                updateScrollProgress();
+            }, 100);
+        });
+    </script>
+</body>
+</html>
