@@ -117,8 +117,7 @@ function calculateRoyalty() {
 
 // Form submission with EmailJS
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize EmailJS with your public key
-    emailjs.init("service_b37hchq","template_q3zw7ma"); // Replace with your actual public key
+    emailjs.init("vrz7g2Y8eQrz1d3RH"); 
     
     const form = document.querySelector('form');
     if (form) {
@@ -131,8 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.disabled = true;
             btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
             
-            // Send email using EmailJS
-            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form)
+            // Send email using EmailJS with your actual IDs
+            emailjs.sendForm('service_b37hchq', 'template_q3zw7ma', form)
                 .then(() => {
                     btn.innerHTML = '✓ Message Sent!';
                     setTimeout(() => {
