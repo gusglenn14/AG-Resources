@@ -31,6 +31,12 @@ function showPage(pageId) {
     const pages = document.querySelectorAll('.page');
     const targetPage = document.getElementById(pageId);
     
+    // Add null check to prevent white screen
+    if (!targetPage) {
+        console.error('Page not found:', pageId);
+        return;
+    }
+    
     // Close mobile menu when navigating
     closeMobileMenu();
     
@@ -45,10 +51,13 @@ function showPage(pageId) {
     });
     
     setTimeout(() => {
-        targetPage.classList.add('active');
-        window.scrollTo(0, 0);
-        animateOnScroll();
-        updateScrollProgress();
+        // Double-check targetPage still exists
+        if (targetPage) {
+            targetPage.classList.add('active');
+            window.scrollTo(0, 0);
+            animateOnScroll();
+            updateScrollProgress();
+        }
     }, 300);
 }
 
@@ -217,4 +226,16 @@ window.addEventListener('orientationchange', function() {
         window.scrollTo(0, 0);
         updateScrollProgress();
     }, 100);
+});
+
+// Fallback for navigation errors
+window.addEventListener('error', function(e) {
+    if (e.message.includes('Cannot read property') || e.message.includes('Cannot read properties')) {
+        console.warn('Navigation error caught, showing home page');
+        const homePage = document.getElementById('home');
+        if (homePage) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            homePage.classList.add('active');
+        }
+    }
 });
