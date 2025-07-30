@@ -115,7 +115,7 @@ function calculateRoyalty() {
     }
 }
 
-// Enhanced Form submission with EmailJS
+// Enhanced Form submission with EmailJS - Dual Email System
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize EmailJS with your public key
     emailjs.init("vrz7g2Y8eQrz1d3RH"); 
@@ -144,21 +144,53 @@ async function handleFormSubmission(e) {
     try {
         // Prepare form data
         const formData = new FormData(form);
-        const templateParams = {
-            from_name: formData.get('name'),
-            from_email: formData.get('email'),
-            phone: formData.get('phone') || 'Not provided',
-            property_location: formData.get('property') || 'Not provided',
-            message: formData.get('message'),
-            to_name: 'AG Resources Team'
+        const customerName = formData.get('name');
+        const customerEmail = formData.get('email');
+        const phone = formData.get('phone') || 'Not provided';
+        const propertyLocation = formData.get('property') || 'Not provided';
+        const message = formData.get('message');
+        
+        // Template parameters for CONTACT US email (to your business)
+        const contactUsParams = {
+            from_name: customerName,
+            from_email: customerEmail,
+            customer_name: customerName,
+            customer_email: customerEmail,
+            customer_phone: phone,
+            property_location: propertyLocation,
+            message: message,
+            to_name: 'AG Resources Team',
+            reply_to: customerEmail
         };
         
-        // Send email using EmailJS
-        await emailjs.send('service_b37hchq', 'template_q3zw7ma', templateParams);
+        // Template parameters for AUTO REPLY email (to customer)
+        const autoReplyParams = {
+            customer_name: customerName,
+            customer_email: customerEmail,
+            customer_phone: phone,
+            property_location: propertyLocation,
+            message: message,
+            to_email: customerEmail,
+            to_name: customerName,
+            from_name: 'AG Resources',
+            from_email: 'info@agresources.com',
+            company_name: 'AG Resources',
+            support_email: 'info@agresources.com',
+            support_phone: '(512) 847-WIND'
+        };
+        
+        // Send both emails simultaneously
+        const [contactUsResult, autoReplyResult] = await Promise.all([
+            emailjs.send('service_b37hchq', 'template_5jw19ar', contactUsParams),
+            emailjs.send('service_b37hchq', 'template_q3zw7ma', autoReplyParams)
+        ]);
+        
+        console.log('Contact Us email sent:', contactUsResult);
+        console.log('Auto Reply email sent:', autoReplyResult);
         
         // Success feedback
         updateButtonState(btn, '✓ Message Sent!', true, '#10b981');
-        showNotification('Your message has been sent successfully!', 'success');
+        showNotification('Your message has been sent successfully! Check your email for confirmation.', 'success');
         
         // Reset form after delay
         setTimeout(() => {
@@ -169,9 +201,16 @@ async function handleFormSubmission(e) {
     } catch (error) {
         console.error('Email submission failed:', error);
         
+        // Check if it's a partial failure
+        if (error.name === 'AggregateError') {
+            console.error('Multiple email errors:', error.errors);
+            showNotification('Message partially sent. Our team has been notified, but your confirmation email may be delayed.', 'warning');
+        } else {
+            showNotification('Failed to send message. Please try again or contact us directly at info@agresources.com', 'error');
+        }
+        
         // Error feedback
         updateButtonState(btn, 'Failed - Try Again', false, '#ef4444');
-        showNotification('Failed to send message. Please try again or contact us directly.', 'error');
         
         // Reset button after delay
         setTimeout(() => {
@@ -257,6 +296,8 @@ function showNotification(message, type) {
     
     if (type === 'success') {
         notification.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+    } else if (type === 'warning') {
+        notification.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
     } else {
         notification.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
     }
@@ -272,7 +313,7 @@ function showNotification(message, type) {
     setTimeout(() => {
         notification.style.transform = 'translateX(400px)';
         setTimeout(() => notification.remove(), 300);
-    }, 4000);
+    }, 5000);
 }
 
 // Initialize everything
