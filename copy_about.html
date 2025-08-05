@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="16x16" href="AG_Logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AG Resources</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'space': ['Space Grotesk', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        'primary-blue': '#1e3a8a',
+                        'secondary-blue': '#1e40af',
+                        'accent-blue': '#60a5fa',
+                        'electric-blue': '#3b82f6',
+                        'neon-blue': '#38bdf8',
+                        'neon-green': '#00ff88',
+                        'electric-green': '#00d468',
+                        'primary-green': '#059669',
+                        'secondary-green': '#047857',
+                        'pure-white': '#ffffff',
+                        'off-white': '#f8fafc',
+                        'light-gray': '#e2e8f0',
+                        'dark-gray': '#374151',
+                        'pure-black': '#1f2937',
+                        'glass-bg': 'rgba(255, 255, 255, 0.05)',
+                        'glass-border': 'rgba(255, 255, 255, 0.1)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html, body { font-family: 'Space Grotesk', sans-serif; overflow: scroll; scrollbar-width: none; -ms-overflow-style: none; background-image: url('bg-normal.svg'); background-attachment: fixed; background-size: cover; background-position: center; }
+        @media (max-width: 768px) {
+            html, body { background-image: url('mobile-normal.svg'); }
+        }
+        html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+        .animate-on-scroll { opacity: 0; transform: translateY(60px); transition: all 1s cubic-bezier(0.4, 0, 0.2, 1); }
+        .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
+        .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: #d1d5db; z-index: 9999; transition: width 0.1s ease; }
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: block; animation: slideDown 0.3s ease; }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .mobile-menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .mobile-menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .mobile-menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress"></div>
+
+    <nav id="navbar" class="fixed top-4 left-8 right-4 bg-white border-2 border-black rounded-full z-50 transition-all duration-300 max-w-7xl mx-auto p-6">
+        <div class="flex items-center justify-between gap-8 w-full">
+            <div class="text-3xl font-extrabold bg-gradient-to-br from-gray-800 to-black bg-clip-text text-transparent tracking-tight cursor-pointer transition-all duration-300 hover:opacity-80 whitespace-nowrap pl-4" onclick="window.location.href='copy.html'">AG Resources</div>
+            <ul class="hidden md:flex list-none gap-8 items-center">
+                <li><a href="copy_royalties.html" class="text-black no-underline font-medium transition-all duration-300 relative px-4 py-2 rounded-full text-lg whitespace-nowrap hover:bg-gray-100">Royalties</a></li>
+                <li><a href="copy_about.html" class="text-black no-underline font-medium transition-all duration-300 relative px-4 py-2 rounded-full text-lg whitespace-nowrap hover:bg-gray-100">About Us</a></li>
+                <li><a href="copy_contact.html" class="text-black no-underline font-medium transition-all duration-300 relative px-4 py-2 rounded-full text-lg whitespace-nowrap hover:bg-gray-100">Contact</a></li>
+            </ul>
+            <div class="md:hidden flex flex-col cursor-pointer p-2 gap-1 mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span class="w-6 h-0.5 bg-black rounded transition-all duration-300"></span>
+                <span class="w-6 h-0.5 bg-black rounded transition-all duration-300"></span>
+                <span class="w-6 h-0.5 bg-black rounded transition-all duration-300"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-20 left-4 right-4 bg-white backdrop-blur-xl rounded-3xl border border-gray-200 p-8 z-40 shadow-lg max-w-7xl mx-auto" id="mobileMenu">
+        <ul class="list-none flex flex-col gap-6">
+            <li><a href="copy_royalties.html" class="text-black no-underline font-medium text-lg p-4 rounded-2xl transition-all duration-300 block text-center hover:bg-gray-100">Royalties</a></li>
+            <li><a href="copy_about.html" class="text-black no-underline font-medium text-lg p-4 rounded-2xl transition-all duration-300 block text-center hover:bg-gray-100">About Us</a></li>
+            <li><a href="copy_contact.html" class="text-black no-underline font-medium text-lg p-4 rounded-2xl transition-all duration-300 block text-center hover:bg-gray-100">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- About Page -->
+    <div class="min-h-screen">
+        <section class="py-32 md:pt-48 text-center text-white">
+            <div class="max-w-7xl mx-auto px-4 md:px-8">
+                <h1 class="text-5xl md:text-7xl font-bold mb-8">About AG Resources</h1>
+                <div class="max-w-4xl mx-auto">
+                    <p class="text-lg md:text-2xl mb-8">
+                        Customized purchasing solutions for each royalty owner. Our goal is cater each tranacation to the needs of the Royalty Owner.
+                    </p>
+                    <p class="text-lg md:text-2xl">
+                        Our expertise spans renewable energy development, financial markets, and oil and gas land management, delivering unparalleled results through innovation, and transparency to agricultural communities.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12">
+            <div class="max-w-8xl mx-auto px-8 md:px-24 2xl:px-48">
+                <div class="text-center mb-12 md:mb-20">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-8 relative text-white">Our Leadership</h2>
+                    <p class="text-lg md:text-2xl text-gray-200 max-w-3xl mx-auto font-normal">Meet the experienced professionals driving innovation in agricultural energy</p>
+                </div>
+                <div class="mx-auto">
+                    <div class="bg-white p-8 md:p-16 rounded-3xl border border-gray-200 shadow-2xl">
+                        <h3 class="text-gray-800 mb-4 text-xl md:text-3xl font-semibold">FOUNDER AND PRESIDENT</h3>
+                        <h4 class="text-gray-800 mb-12 text-2xl md:text-4xl font-bold">Gavin Glenn</h4>
+                        <p class="text-lg md:text-xl leading-relaxed text-dark-gray mb-6">
+                            From 2018-2025 Gavin served as President of Americlean Energy Group. Gavin's
+                            responsibilities included preparing wind leases, reviewing all the contracts for
+                            Americlean for a 400 MW wind farm located in Woodford County, Illinois. Additionally,
+                            Americlean developed two projects totaling 750 MW of power in Callahan County,
+                            Texas.
+                        </p>   
+                        <p class="text-lg md:text-xl leading-relaxed text-dark-gray mb-6">
+                            Prior to his renewable energy endeavors, Gavin served as an in-hous attorney for
+                            several small to large companies focusing on the transactional side of oil, gas and
+                            renewable energy law for various exploration and production and mineral purchasing
+                            clients  This includes drafting and reviewing purchase and sale agreements, title
+                            reports, land management projects.
+                        </p>
+                        <p class="text-lg md:text-xl leading-relaxed text-dark-gray">
+                            Gavin graduated from Southern Methodist University with a B.S. in in Mechanical
+                            Engineering in 1999 and a juris doctorate from Texas Tech University in 2005.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12">
+            <div class="max-w-8xl mx-auto px-8 md:px-24 2xl:px-48">
+                <div class="text-center mb-12 md:mb-20 animate-on-scroll">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-8 relative text-white">Our Track Record</h2>
+                    <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto font-normal">Demonstrating excellence through measurable results and industry leadership</p>
+                </div>
+                <div class=" mx-auto animate-on-scroll">
+                    <div class="bg-white p-8 md:p-12 rounded-3xl border border-gray-200 shadow-lg">
+                        <p class="text-lg md:text-xl text-gray-800 mb-8 leading-relaxed">
+                            With over 15 years of experience in renewable energy development and financial markets, our team has established AG Resources as a trusted leader in agricultural wind energy solutions. We've successfully completed over 300 transactions, developed more than 1,500MW of wind capacity, and invested over $50 million in landowner royalties.
+                        </p>
+                        <p class="text-lg md:text-xl text-gray-800 leading-relaxed">
+                            Our comprehensive approach combines technical expertise, market knowledge, and deep respect for agricultural traditions to deliver exceptional results that benefit landowners, communities, and the environment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Include External JavaScript -->
+    <script src="copy.js"></script>
+</body>
+</html> 
