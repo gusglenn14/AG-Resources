@@ -33,13 +33,13 @@ body {
     background: var(--pure-white);
 }
 
-/* Revolutionary Navigation */
+/* Navigation */
 nav {
     position: fixed;
     top: 1rem;
     left: 1rem;
     right: 1rem;
-    background: rgba(30, 58, 138, 0.95);
+    background: var(--pure-white);
     border: 1px solid rgba(96, 165, 250, 0.2);
     border-radius: 50px;
     z-index: 1000;
@@ -52,7 +52,7 @@ nav {
 }
 
 nav:hover {
-    background: rgba(30, 58, 138, 0.98);
+    background: var(--pure-white);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
 
@@ -89,7 +89,7 @@ nav:hover {
 }
 
 .nav-links li a {
-    color: var(--pure-white);
+    color: var(--electric-blue);
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -101,8 +101,8 @@ nav:hover {
 }
 
 .nav-links li a:hover {
-    background: var(--glass-bg);
-    color: var(--neon-blue);
+    background: rgba(30, 58, 138, 0.08); 
+    color: var(--neon-blue); 
     box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
 }
 
@@ -118,7 +118,7 @@ nav:hover {
 .mobile-menu-toggle span {
     width: 25px;
     height: 3px;
-    background: var(--pure-white);
+    background: var(--pure-black);
     border-radius: 2px;
     transition: all 0.3s ease;
 }
@@ -141,7 +141,7 @@ nav:hover {
     top: 90px;
     left: 1rem;
     right: 1rem;
-    background: rgba(30, 58, 138, 0.98);
+    background: var(--primary-blue);
     backdrop-filter: blur(20px);
     border-radius: 20px;
     border: 1px solid var(--glass-border);
@@ -176,7 +176,7 @@ nav:hover {
 }
 
 .mobile-menu a {
-    color: var(--pure-white);
+    color: var(--primary-blue);
     text-decoration: none;
     font-weight: 500;
     font-size: 1.1rem;
@@ -188,7 +188,7 @@ nav:hover {
 }
 
 .mobile-menu a:hover {
-    background: var(--glass-bg);
+    background: var(--primary-blue);
     color: var(--neon-blue);
 }
 
