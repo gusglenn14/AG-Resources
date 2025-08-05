@@ -117,7 +117,7 @@ function calculateRoyalty() {
 
 // Simplified Form submission - Always shows success
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize EmailJS with your public key
+    
     emailjs.init("vrz7g2Y8eQrz1d3RH"); 
     
     const form = document.querySelector('#contact-form');
