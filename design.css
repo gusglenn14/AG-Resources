@@ -33,13 +33,13 @@ body {
     background: var(--pure-white);
 }
 
-/* Revolutionary Navigation */
+/* Navigation */
 nav {
     position: fixed;
     top: 1rem;
     left: 1rem;
     right: 1rem;
-    background: rgba(30, 58, 138, 0.95);
+    background: rgba(--pure-white);
     border: 1px solid rgba(96, 165, 250, 0.2);
     border-radius: 50px;
     z-index: 1000;
