@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="16x16" href="AG_Logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royalties - AG Resources</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'space': ['Space Grotesk', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        'primary-blue': '#1e3a8a',
+                        'secondary-blue': '#1e40af',
+                        'accent-blue': '#60a5fa',
+                        'electric-blue': '#3b82f6',
+                        'neon-blue': '#38bdf8',
+                        'neon-green': '#00ff88',
+                        'electric-green': '#00d468',
+                        'primary-green': '#059669',
+                        'secondary-green': '#047857',
+                        'pure-white': '#ffffff',
+                        'off-white': '#f8fafc',
+                        'light-gray': '#e2e8f0',
+                        'dark-gray': '#374151',
+                        'pure-black': '#1f2937',
+                        'glass-bg': 'rgba(255, 255, 255, 0.05)',
+                        'glass-border': 'rgba(255, 255, 255, 0.1)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html, body { font-family: 'Space Grotesk', sans-serif; overflow: scroll; scrollbar-width: none; -ms-overflow-style: none; background-image: url('bg-normal.svg'); background-attachment: fixed; background-size: cover; background-position: center; }
+        @media (max-width: 768px) {
+            html, body { background-image: url('mobile-normal.svg'); }
+        }
+        html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+        .animate-on-scroll { opacity: 0; transform: translateY(60px); transition: all 1s cubic-bezier(0.4, 0, 0.2, 1); }
+        .animate-on-scroll.animated { opacity: 1; transform: translateY(0); }
+        .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: #d1d5db; z-index: 9999; transition: width 0.1s ease; }
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: block; animation: slideDown 0.3s ease; }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .mobile-menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .mobile-menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .mobile-menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        .calc-result { animation: glow 2s ease-in-out infinite alternate; }
+        @keyframes glow {
+            0% { text-shadow: 0 0 20px #38bdf8; }
+            100% { text-shadow: 0 0 30px #38bdf8, 0 0 40px #3b82f6; }
+        }
+        .timeline-container { position: relative; }
+        .timeline-line { position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; background: white; transform: translateX(-50%); opacity: 0; transition: opacity 1s ease; }
+        .timeline-line.visible { opacity: 1; }
+        .timeline-item { position: relative; margin-bottom: 4rem; }
+        .timeline-card { background: white; border-radius: 1rem; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; }
+        .timeline-number { position: absolute; top: -25px; right: -25px; width: 50px; height: 50px; background: white; border: 2px solid black; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: black; font-weight: 700; font-size: 1.5rem; box-shadow: 0 10px 30px rgba(107, 114, 128, 0.4); }
+        .value-icon { background: linear-gradient(135deg, #38bdf8, #3b82f6); box-shadow: 0 10px 30px rgba(96, 165, 250, 0.3); }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress"></div>
+
+    <nav id="navbar" class="fixed top-4 left-8 right-4 bg-white border-2 border-black rounded-full z-50 transition-all duration-300 max-w-7xl mx-auto p-6">
+        <div class="flex items-center justify-between gap-8 w-full">
+            <div class="text-3xl font-extrabold bg-gradient-to-br from-gray-800 to-black bg-clip-text text-transparent tracking-tight cursor-pointer transition-all duration-300 hover:opacity-80 whitespace-nowrap pl-4" onclick="window.location.href='copy.html'">AG Resources</div>
+            <ul class="hidden md:flex list-none gap-8 items-center">
+                <li><a href="copy_royalties.html" class="text-black no-underline font-medium transition-all duration-300 relative px-4 py-2 rounded-full text-lg whitespace-nowrap hover:bg-gray-100">Royalties</a></li>
+                <li><a href="copy_about.html" class="text-black no-underline font-medium transition-all duration-300 relative px-4 py-2 rounded-full text-lg whitespace-nowrap hover:bg-gray-100">About Us</a></li>
+                <li><a href="copy_contact.html" class="text-black no-underline font-medium transition-all duration-300 relative px-4 py-2 rounded-full text-lg whitespace-nowrap hover:bg-gray-100">Contact</a></li>
+            </ul>
+            <div class="md:hidden flex flex-col cursor-pointer p-2 gap-1 mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span class="w-6 h-0.5 bg-black rounded transition-all duration-300"></span>
+                <span class="w-6 h-0.5 bg-black rounded transition-all duration-300"></span>
+                <span class="w-6 h-0.5 bg-black rounded transition-all duration-300"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-20 left-4 right-4 bg-white backdrop-blur-xl rounded-3xl border border-gray-200 p-8 z-40 shadow-lg max-w-7xl mx-auto" id="mobileMenu">
+        <ul class="list-none flex flex-col gap-6">
+            <li><a href="copy_royalties.html" class="text-black no-underline font-medium text-lg p-4 rounded-2xl transition-all duration-300 block text-center hover:bg-gray-100">Royalties</a></li>
+            <li><a href="copy_about.html" class="text-black no-underline font-medium text-lg p-4 rounded-2xl transition-all duration-300 block text-center hover:bg-gray-100">About Us</a></li>
+            <li><a href="copy_contact.html" class="text-black no-underline font-medium text-lg p-4 rounded-2xl transition-all duration-300 block text-center hover:bg-gray-100">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Royalties Page -->
+    <div class="min-h-screen">
+        <section class="py-32 md:pt-48 text-center text-white">
+            <div class="max-w-8xl mx-auto px-4 md:px-8">
+                <h1 class="text-5xl md:text-8xl font-bold mb-8 bg-gradient-to-br from-white to-gray-300 bg-clip-text text-transparent">Royalty Solutions</h1>
+                <p class="text-lg md:text-2xl max-w-4xl mx-auto text-gray-200">
+                    AG Resources is a transparent, experienced, and well-funded royalty buyer. We provide landowners with the opportunity to receive substantial lump sum payments instead of waiting for periodic distributions over decades.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-12">
+            <div class="max-w-8xl mx-auto px-4 md:px-8">
+                <div class="text-center mb-12 md:mb-20 animate-on-scroll">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-8 relative text-white">Why Choose Lump Sum Investment?</h2>
+                    <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto font-normal">Converting your royalties unlocks significant investment opportunities that can generate substantially more wealth over time than periodic payments</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                    <div class="bg-white p-8 md:p-12 rounded-3xl text-center border border-gray-200 transition-all duration-500 relative overflow-hidden hover:-translate-y-2 hover:shadow-2xl hover:border-gray-400 animate-on-scroll shadow-inner">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-8 text-2xl md:text-3xl text-white bg-gradient-to-br from-gray-800 to-black"><i class="fa-solid fa-sack-dollar"></i></div>
+                        <h3 class="text-black mb-4 text-xl md:text-2xl font-semibold">Immediate Capital Access</h3>
+                        <p class="text-gray-600 text-base md:text-lg leading-relaxed">Receive substantial lump sum payments instead of waiting decades for periodic royalty distributions. Access capital when you need it most for expansion, investments, or personal financial goals.</p>
+                    </div>
+                    <div class="bg-white p-8 md:p-12 rounded-3xl text-center border border-gray-200 transition-all duration-500 relative overflow-hidden hover:-translate-y-2 hover:shadow-2xl hover:border-gray-400 animate-on-scroll shadow-inner">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-8 text-2xl md:text-3xl text-white bg-gradient-to-br from-gray-800 to-black"><i class="fa-solid fa-chart-line"></i></div>
+                        <h3 class="text-black mb-4 text-xl md:text-2xl font-semibold">Superior Investment Returns</h3>
+                        <p class="text-gray-600 text-base md:text-lg leading-relaxed">A $100,000 lump sum invested at 8% annual return grows to approximately $2.3 million over 40 years - often exceeding total royalty payments while providing complete liquidity and flexibility.</p>
+                    </div>
+                    <div class="bg-white p-8 md:p-12 rounded-3xl text-center border border-gray-200 transition-all duration-500 relative overflow-hidden hover:-translate-y-2 hover:shadow-2xl hover:border-gray-400 animate-on-scroll shadow-inner">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-8 text-2xl md:text-3xl text-white bg-gradient-to-br from-gray-800 to-black"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3 class="text-black mb-4 text-xl md:text-2xl font-semibold">Risk Mitigation</h3>
+                        <p class="text-gray-600 text-base md:text-lg leading-relaxed">Eliminate exposure to power price volatility, grid reliability issues, turbine maintenance costs, and changing energy policies that could significantly impact future royalty payments.</p>
+                    </div>
+                    <div class="bg-white p-8 md:p-12 rounded-3xl text-center border border-gray-200 transition-all duration-500 relative overflow-hidden hover:-translate-y-2 hover:shadow-2xl hover:border-gray-400 animate-on-scroll shadow-inner">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-8 text-2xl md:text-3xl text-white bg-gradient-to-br from-gray-800 to-black"><i class="fa-solid fa-wheat-awn"></i></div>
+                        <h3 class="text-black mb-4 text-xl md:text-2xl font-semibold">Agricultural Expansion</h3>
+                        <p class="text-gray-600 text-base md:text-lg leading-relaxed">Many landowners use royalty proceeds to acquire additional farmland, upgrade equipment, or expand operations - creating a new source of equity for strategic agricultural investments.</p>
+                    </div>
+                    <div class="bg-white p-8 md:p-12 rounded-3xl text-center border border-gray-200 transition-all duration-500 relative overflow-hidden hover:-translate-y-2 hover:shadow-2xl hover:border-gray-400 animate-on-scroll shadow-inner">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-8 text-2xl md:text-3xl text-white bg-gradient-to-br from-gray-800 to-black"><i class="fa-solid fa-arrows-rotate"></i></div>
+                        <h3 class="text-black mb-4 text-xl md:text-2xl font-semibold">Flexible Options</h3>
+                        <p class="text-gray-600 text-base md:text-lg leading-relaxed">Sell your entire royalty interest or retain partial ownership. We offer customized solutions that align with your specific financial goals and risk tolerance.</p>
+                    </div>
+                    <div class="bg-white p-8 md:p-12 rounded-3xl text-center border border-gray-200 transition-all duration-500 relative overflow-hidden hover:-translate-y-2 hover:shadow-2xl hover:border-gray-400 animate-on-scroll shadow-inner">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-8 text-2xl md:text-3xl text-white bg-gradient-to-br from-gray-800 to-black"><i class="fa-solid fa-chart-simple"></i></div>
+                        <h3 class="text-black mb-4 text-xl md:text-2xl font-semibold">Transparent Valuation</h3>
+                        <p class="text-gray-600 text-base md:text-lg leading-relaxed">Receive detailed financial analysis of your turbines' production potential, even if you decide not to sell. Our comprehensive evaluation provides valuable insights into your asset's market value.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12">
+            <div class="max-w-7xl mx-auto px-4 md:px-8">
+                <div class="text-center mb-12 md:mb-20 animate-on-scroll">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-8 relative text-white">Our Proven Process</h2>
+                    <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto font-normal">A streamlined, transparent approach that delivers results</p>
+                </div>
+                <div class="mx-auto relative">
+                    <div class="timeline-container">
+                        <div class="timeline-line" id="timelineLine"></div>
+                        <div class="timeline-item animate-on-scroll">
+                            <div class="timeline-card">
+                                <h3 class="text-gray-800 mb-4 text-xl md:text-2xl font-semibold">Initial Assessment</h3>
+                                <p class="text-gray-600 text-base md:text-lg leading-relaxed">Comprehensive evaluation of your property, existing or planned solar or wind installations, lease agreements, and production potential using advanced modeling techniques.</p>
+                            </div>
+                            <div class="timeline-number">1</div>
+                        </div>
+                        <div class="timeline-item animate-on-scroll">
+                            <div class="timeline-card">
+                                <h3 class="text-gray-800 mb-4 text-xl md:text-2xl font-semibold">Market Analysis</h3>
+                                <p class="text-gray-600 text-base md:text-lg leading-relaxed">Our experts conduct comprehensive market research, revenue projections, and risk assessment using proprietary financial models and industry data.</p>
+                            </div>
+                            <div class="timeline-number">2</div>
+                        </div>
+                        <div class="timeline-item animate-on-scroll">
+                            <div class="timeline-card">
+                                <h3 class="text-gray-800 mb-4 text-xl md:text-2xl font-semibold">Detailed Valuation</h3>
+                                <p class="text-gray-600 text-base md:text-lg leading-relaxed">Receive a comprehensive analysis report detailing your royalty interest value, production forecasts, and market comparables - valuable information regardless of your decision.</p>
+                            </div>
+                            <div class="timeline-number">3</div>
+                        </div>
+                        <div class="timeline-item animate-on-scroll">
+                            <div class="timeline-card">
+                                <h3 class="text-gray-800 mb-4 text-xl md:text-2xl font-semibold">Seamless Closing</h3>
+                                <p class="text-gray-600 text-base md:text-lg leading-relaxed">Streamlined transaction process with experienced legal support, ensuring a smooth transfer and immediate access to your capital.</p>
+                            </div>
+                            <div class="timeline-number">4</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 text-white">
+            <div class="max-w-7xl mx-auto px-4 md:px-8">
+                <div class="mx-auto text-center">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-4 text-white">Royalty Value Calculator</h2>
+                    <p class="mb-8 text-lg md:text-xl text-gray-200">Get an estimated value of your wind royalty interest using our advanced valuation model</p>
+                    <div class="bg-white border border-gray-200 rounded-3xl p-8 md:p-16 relative overflow-hidden shadow-lg">
+                        <input type="number" class="w-full p-6 border-2 border-gray-300 rounded-2xl text-lg md:text-xl mb-6 bg-white text-black font-mono transition-all duration-300 focus:outline-none focus:border-gray-600 focus:shadow-2xl" id="turbines" placeholder="Number of turbines on your property">
+                        <input type="number" class="w-full p-6 border-2 border-gray-300 rounded-2xl text-lg md:text-xl mb-6 bg-white text-black font-mono transition-all duration-300 focus:outline-none focus:border-gray-600 focus:shadow-2xl" id="capacity" placeholder="Average turbine capacity (MW)">
+                        <input type="number" class="w-full p-6 border-2 border-gray-300 rounded-2xl text-lg md:text-xl mb-6 bg-white text-black font-mono transition-all duration-300 focus:outline-none focus:border-gray-600 focus:shadow-2xl" id="royalty" placeholder="Royalty percentage (%)">
+                        <input type="number" class="w-full p-6 border-2 border-gray-300 rounded-2xl text-lg md:text-xl mb-6 bg-white text-black font-mono transition-all duration-300 focus:outline-none focus:border-gray-600 focus:shadow-2xl" id="power-price" placeholder="Average power price ($/MWh)" value="45">
+                        <button class="w-full px-10 py-5 border-none rounded-full text-lg font-semibold cursor-pointer no-underline inline-flex items-center justify-center gap-2 relative overflow-hidden transition-all duration-500 font-space text-center whitespace-nowrap min-h-15 touch-manipulation bg-gradient-to-br from-gray-800 to-black text-white shadow-2xl hover:-translate-y-1 hover:scale-105 hover:shadow-3xl mt-4" onclick="calculateRoyalty()">
+                            Calculate Estimated Value
+                        </button>
+                        <div class="calc-result text-3xl md:text-5xl font-bold bg-gradient-to-br from-white to-gray-200 bg-clip-text text-transparent mt-8 text-center font-mono" id="result"></div>
+                        <p class="text-sm md:text-base text-gray-600 mt-6">
+                            *This estimate is based on industry averages. Contact us <a href="copy_contact.html" class="underline">here</a> for a comprehensive evaluation and actual offer.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+    <!-- Include External JavaScript -->
+    <script src="copy.js"></script>
+</body>
+</html> 
