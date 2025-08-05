@@ -94,72 +94,21 @@ function animateOnScroll() {
 
 // Advanced calculator
 function calculateRoyalty() {
-    // This function is now replaced by calculateWindRoyalty()
-    calculateWindRoyalty();
-}
-
-// Tab switching functionality
-function switchTab(tabType) {
-    const tabs = document.querySelectorAll('.calc-tab');
-    const solarCalc = document.getElementById('solar-calc');
-    const windCalc = document.getElementById('wind-calc');
-    
-    // Remove active class from all tabs
-    tabs.forEach(tab => tab.classList.remove('active'));
-    
-    // Add active class to clicked tab
-    event.target.classList.add('active');
-    
-    // Show/hide calculators with animation
-    if (tabType === 'solar') {
-        windCalc.style.display = 'none';
-        solarCalc.style.display = 'block';
-    } else {
-        solarCalc.style.display = 'none';
-        windCalc.style.display = 'block';
-    }
-}
-
-// Solar calculator function
-function calculateSolarRoyalty() {
-    const capacity = document.getElementById('solar-capacity').value;
-    const royalty = document.getElementById('solar-royalty').value;
-    const powerPrice = document.getElementById('solar-power-price').value || 50;
-    
-    if (capacity && royalty) {
-        // Solar calculation with 22% capacity factor
-        const capacityFactor = 0.22; // Solar capacity factor
-        const hoursPerYear = 8760;
-        const capacityMW = capacity / 1000; // Convert kW to MW
-        const annualProduction = capacityMW * capacityFactor * hoursPerYear;
-        const annualRevenue = annualProduction * powerPrice;
-        const annualRoyalty = annualRevenue * (royalty / 100);
-        const estimatedValue = annualRoyalty * 15; // 15x multiplier for solar (longer lifespan)
-        
-        const result = document.getElementById('solar-result');
-        result.innerHTML = `$${estimatedValue.toLocaleString()}`;
-        result.style.animation = 'none';
-        setTimeout(() => result.style.animation = 'glow 2s ease-in-out infinite alternate', 10);
-    }
-}
-
-// Wind calculator function (updated from existing)
-function calculateWindRoyalty() {
     const turbines = document.getElementById('turbines').value;
     const capacity = document.getElementById('capacity').value;
     const royalty = document.getElementById('royalty').value;
     const powerPrice = document.getElementById('power-price').value || 45;
     
     if (turbines && capacity && royalty) {
-        // Wind calculation with 35% capacity factor
-        const capacityFactor = 0.35;
+        // Advanced calculation with capacity factor and annual production
+        const capacityFactor = 0.35; // Industry average
         const hoursPerYear = 8760;
         const annualProduction = turbines * capacity * capacityFactor * hoursPerYear;
         const annualRevenue = annualProduction * powerPrice;
         const annualRoyalty = annualRevenue * (royalty / 100);
-        const estimatedValue = annualRoyalty * 12; // 12x multiplier for wind
+        const estimatedValue = annualRoyalty * 12; // 12x multiplier for lump sum
         
-        const result = document.getElementById('wind-result');
+        const result = document.getElementById('result');
         result.innerHTML = `$${estimatedValue.toLocaleString()}`;
         result.style.animation = 'none';
         setTimeout(() => result.style.animation = 'glow 2s ease-in-out infinite alternate', 10);
