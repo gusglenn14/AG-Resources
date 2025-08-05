@@ -201,50 +201,41 @@
 </section>
 
 
-       <section class="calculator-section">
-    <div class="container">
-        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <h2 style="color: var(--pure-white); margin-bottom: 1rem; font-size: clamp(2rem, 5vw, 3rem);">Royalty Value Calculator</h2>
-            <p style="margin-bottom: 2rem; color: var(--light-gray); font-size: clamp(1rem, 2.5vw, 1.2rem);">Get an estimated value of your royalty interest using our advanced valuation model</p>
-            
-            <!-- Tab Navigation -->
-            <div class="calc-tabs">
-                <button class="calc-tab active" onclick="switchTab('solar')">☀️ Solar Calculator</button>
-                <button class="calc-tab" onclick="switchTab('wind')">💨 Wind Calculator</button>
+        <section class="calculator-section">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 style="color: var(--pure-white); margin-bottom: 1rem; font-size: clamp(2rem, 5vw, 3rem);">Royalty Value Calculator</h2>
+                    <p style="margin-bottom: 2rem; color: var(--light-gray); font-size: clamp(1rem, 2.5vw, 1.2rem);">Get an estimated value of your wind royalty interest using our advanced valuation model</p>
+                    <div class="calculator">
+                        <input type="number" class="calc-input" id="turbines" placeholder="Number of turbines on your property">
+                        <input type="number" class="calc-input" id="capacity" placeholder="Average turbine capacity (MW)">
+                        <input type="number" class="calc-input" id="royalty" placeholder="Royalty percentage (%)">
+                        <input type="number" class="calc-input" id="power-price" placeholder="Average power price ($/MWh)" value="45">
+                        <button class="btn btn-primary" onclick="calculateRoyalty()" style="width: 100%; margin-top: 1rem;">
+                            Calculate Estimated Value
+                        </button>
+                        <div class="calc-result" id="result"></div>
+                        <p style="font-size: clamp(0.8rem, 2vw, 1rem); color: var(--light-gray); margin-top: 1.5rem;">
+                            *This estimate is based on industry averages. Contact us for a comprehensive evaluation and actual offer.
+                        </p>
+                    </div>
+                </div>
             </div>
-            
-            <!-- Solar Calculator -->
-            <div class="calculator" id="solar-calc">
-                <input type="number" class="calc-input" id="solar-capacity" placeholder="Solar system size (kW)">
-                <input type="number" class="calc-input" id="solar-panels" placeholder="Number of solar panels (optional)">
-                <input type="number" class="calc-input" id="solar-royalty" placeholder="Royalty percentage (%)">
-                <input type="number" class="calc-input" id="solar-power-price" placeholder="Average power price ($/MWh)" value="50">
-                <button class="btn btn-primary" onclick="calculateSolarRoyalty()" style="width: 100%; margin-top: 1rem;">
-                    Calculate Solar Value
-                </button>
-                <div class="calc-result" id="solar-result"></div>
-                <p style="font-size: clamp(0.8rem, 2vw, 1rem); color: var(--light-gray); margin-top: 1.5rem;">
-                    *Solar estimate based on 22% capacity factor and industry averages. Contact us for a comprehensive evaluation.
-                </p>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div style="text-align: center; margin: 4rem 0;">
+                    <p style="font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--dark-gray); margin-bottom: 2rem;">
+                        We've completed hundreds of successful transactions across diverse projects nationwide, with total payments exceeding $50 million to landowners.
+                    </p>
+                    <a href="#" class="btn btn-primary" onclick="showPage('contact')">
+                        Request Free Evaluation
+                    </a>
+                </div>
             </div>
-            
-            <!-- Wind Calculator -->
-            <div class="calculator" id="wind-calc" style="display: none;">
-                <input type="number" class="calc-input" id="turbines" placeholder="Number of turbines on your property">
-                <input type="number" class="calc-input" id="capacity" placeholder="Average turbine capacity (MW)">
-                <input type="number" class="calc-input" id="royalty" placeholder="Royalty percentage (%)">
-                <input type="number" class="calc-input" id="power-price" placeholder="Average power price ($/MWh)" value="45">
-                <button class="btn btn-primary" onclick="calculateWindRoyalty()" style="width: 100%; margin-top: 1rem;">
-                    Calculate Wind Value
-                </button>
-                <div class="calc-result" id="wind-result"></div>
-                <p style="font-size: clamp(0.8rem, 2vw, 1rem); color: var(--light-gray); margin-top: 1.5rem;">
-                    *Wind estimate based on 35% capacity factor and industry averages. Contact us for a comprehensive evaluation.
-                </p>
-            </div>
-        </div>
+        </section>
     </div>
-</section>
 
     <!-- About Page -->
     <div id="about" class="page">
@@ -278,7 +269,7 @@
                             Americlean for a 400 MW wind farm located in Woodford County, Illinois. Additionally,
                             Americlean developed two projects totaling 750 MW of power in Callahan County,
                             Texas.
-
+                            
                         <p>   
                         <p style="font-size: clamp(1rem, 2.5vw, 1.2rem); line-height: 1.8; color: var(--dark-gray);">
                             Prior to his renewable energy endeavors, Gavin served as an in-hous attorney for
