@@ -52,7 +52,7 @@ nav {
 }
 
 nav:hover {
-    background: rgba(30, 58, 138, 0.98);
+    background: var(--pure-white);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
 
@@ -89,7 +89,7 @@ nav:hover {
 }
 
 .nav-links li a {
-    color: var(--pure-white);
+    color: var(--electric-blue);
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -101,8 +101,8 @@ nav:hover {
 }
 
 .nav-links li a:hover {
-    background: var(--glass-bg);
-    color: var(--neon-blue);
+    background: rgba(30, 58, 138, 0.08); 
+    color: var(--neon-blue); 
     box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
 }
 
