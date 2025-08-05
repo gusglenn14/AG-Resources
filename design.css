@@ -118,7 +118,7 @@ nav:hover {
 .mobile-menu-toggle span {
     width: 25px;
     height: 3px;
-    background: var(--pure-white);
+    background: var(--pure-black);
     border-radius: 2px;
     transition: all 0.3s ease;
 }
