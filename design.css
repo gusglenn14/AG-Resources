@@ -295,8 +295,8 @@ nav:hover {
     position: absolute;
     left: 0;
     top: 50%;
-    width: 4px;
-    height: 75%;
+    width: 5px;
+    height: 85%;
     background: linear-gradient(to bottom, var(--neon-blue), var(--electric-blue));
     transform: translateY(-50%);
     border-radius: 2px;
@@ -1103,3 +1103,6 @@ nav:hover {
     background: linear-gradient(135deg, #f59e0b, #d97706) !important;
 }
 
+.left-align {
+    text-align: left;
+}
