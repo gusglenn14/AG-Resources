@@ -141,7 +141,7 @@ nav:hover {
     top: 90px;
     left: 1rem;
     right: 1rem;
-    background: var(--pure-white);
+    background: var(--accent-blue);
     backdrop-filter: blur(20px);
     border-radius: 20px;
     border: 1px solid var(--glass-border);
@@ -188,7 +188,7 @@ nav:hover {
 }
 
 .mobile-menu a:hover {
-    background: var(--pure-white);
+    background: var(--primary-blue);
     color: var(--neon-blue);
 }
 
