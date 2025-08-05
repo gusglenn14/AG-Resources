@@ -141,7 +141,7 @@ nav:hover {
     top: 90px;
     left: 1rem;
     right: 1rem;
-    background: var(--accent-blue);
+    background: var(--primary-blue;
     backdrop-filter: blur(20px);
     border-radius: 20px;
     border: 1px solid var(--glass-border);
