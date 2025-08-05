@@ -296,7 +296,7 @@ nav:hover {
     left: 0;
     top: 50%;
     width: 4px;
-    height: 60%;
+    height: 75%;
     background: linear-gradient(to bottom, var(--neon-blue), var(--electric-blue));
     transform: translateY(-50%);
     border-radius: 2px;
@@ -305,7 +305,7 @@ nav:hover {
 
 @keyframes pulse {
     0%, 100% { opacity: 0.5; transform: translateY(-50%) scaleY(1); }
-    50% { opacity: 1; transform: translateY(-50%) scaleY(1.2); }
+    50% { opacity: 1; transform: translateY(-50%) scaleY(1.1); }
 }
 
 /* Futuristic Buttons */
