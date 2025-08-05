@@ -39,7 +39,7 @@ nav {
     top: 1rem;
     left: 1rem;
     right: 1rem;
-    background: rgba(--pure-white);
+    background: var(--pure-white);
     border: 1px solid rgba(96, 165, 250, 0.2);
     border-radius: 50px;
     z-index: 1000;
