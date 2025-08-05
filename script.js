@@ -26,8 +26,16 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// Page navigation with effects
-function showPage(pageId) {
+// FIXED: Page navigation with proper event handling
+function showPage(pageId, event) {
+    // Prevent default anchor behavior
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    
+    console.log('Navigating to page:', pageId); // Debug log
+    
     const pages = document.querySelectorAll('.page');
     const targetPage = document.getElementById(pageId);
     
@@ -61,7 +69,50 @@ function showPage(pageId) {
         window.scrollTo(0, 0);
         animateOnScroll();
         updateScrollProgress();
+        
+        console.log('Page activated:', pageId); // Debug log
     }, 300);
+}
+
+// Alternative navigation function that doesn't rely on onclick attributes
+function setupNavigation() {
+    // Setup desktop navigation
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const href = this.getAttribute('onclick');
+            if (href) {
+                const pageMatch = href.match(/showPage\('([^']+)'\)/);
+                if (pageMatch) {
+                    showPage(pageMatch[1], e);
+                }
+            }
+        });
+    });
+    
+    // Setup mobile navigation
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const href = this.getAttribute('onclick');
+            if (href) {
+                const pageMatch = href.match(/showPage\('([^']+)'\)/);
+                if (pageMatch) {
+                    showPage(pageMatch[1], e);
+                    closeMobileMenu();
+                }
+            }
+        });
+    });
+    
+    // Setup logo navigation
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        logo.addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage('home', e);
+        });
+    }
 }
 
 // Scroll progress indicator
@@ -175,6 +226,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (form) {
         form.addEventListener('submit', handleFormSubmission);
     }
+    
+    // IMPORTANT: Setup navigation after DOM is loaded
+    setupNavigation();
 });
 
 async function handleFormSubmission(e) {
