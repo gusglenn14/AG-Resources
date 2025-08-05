@@ -1103,3 +1103,14 @@ nav:hover {
     background: linear-gradient(135deg, #f59e0b, #d97706) !important;
 }
 
+/* Hide scrollbar while keeping scroll functionality */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+
+
