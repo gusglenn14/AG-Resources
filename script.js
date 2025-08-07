@@ -3,13 +3,26 @@ function toggleMobileMenu() {
     const mobileMenu = document.getElementById('mobileMenu');
     const toggle = document.querySelector('.mobile-menu-toggle');
     
+    if (!mobileMenu || !toggle) {
+        console.error('Mobile menu elements not found');
+        return;
+    }
+    
     mobileMenu.classList.toggle('active');
     toggle.classList.toggle('active');
+    
+    // Debug logging
+    console.log('Mobile menu toggled:', mobileMenu.classList.contains('active'));
 }
 
 function closeMobileMenu() {
     const mobileMenu = document.getElementById('mobileMenu');
     const toggle = document.querySelector('.mobile-menu-toggle');
+    
+    if (!mobileMenu || !toggle) {
+        console.error('Mobile menu elements not found');
+        return;
+    }
     
     mobileMenu.classList.remove('active');
     toggle.classList.remove('active');
