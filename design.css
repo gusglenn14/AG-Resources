@@ -274,6 +274,26 @@ nav:hover {
     padding: 0 2rem;
 }
 
+.hero-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.hero-logo {
+    height: clamp(64px, 10vw, 140px);
+    width: auto;
+    max-width: min(30vw, 180px);
+    flex: 0 0 auto;
+}
+
+.hero-brand .hero-title {
+    margin-bottom: 0;
+}
+
 .hero-title {
     font-size: clamp(3rem, 8vw, 6rem);
     font-weight: 800;
@@ -303,20 +323,12 @@ nav:hover {
     margin-right: auto;
     position: relative;
     color: var(--pure-white);
-    padding-left: 1rem;
+    text-align: center;
+    padding-left: 0;
 }
 
 .hero-subtitle::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 5px;
-    height: 85%;
-    background: linear-gradient(to bottom, var(--neon-blue), var(--electric-blue));
-    transform: translateY(-50%);
-    border-radius: 2px;
-    animation: pulse 2s ease-in-out infinite;
+    content: none;
 }
 
 @keyframes pulse {
