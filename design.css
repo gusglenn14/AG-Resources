@@ -37,8 +37,8 @@ body {
 nav {
     position: fixed;
     top: 1rem;
-    left: 1rem;
-    right: 1rem;
+    left: 50%;
+    right: auto;
     background: var(--pure-white);
     border: 1px solid rgba(96, 165, 250, 0.2);
     border-radius: 50px;
@@ -49,6 +49,8 @@ nav {
     backdrop-filter: blur(20px);
     max-width: 1200px;
     margin: 0 auto;
+    width: calc(100% - 2rem);
+    transform: translateX(-50%);
 }
 
 nav:hover {
@@ -148,8 +150,8 @@ nav:hover {
     display: none;
     position: fixed;
     top: 90px;
-    left: 1rem;
-    right: 1rem;
+    left: 50%;
+    right: auto;
     background: var(--pure-white);
     backdrop-filter: blur(20px);
     border-radius: 20px;
@@ -160,7 +162,8 @@ nav:hover {
     max-width: 1200px;
     margin: 0 auto;
     opacity: 0;
-    transform: translateY(-20px);
+    width: calc(100% - 2rem);
+    transform: translate(-50%, -20px);
     transition: all 0.3s ease;
     visibility: hidden;
 }
@@ -168,7 +171,7 @@ nav:hover {
 .mobile-menu.active {
     display: block;
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(-50%, 0);
     visibility: visible;
 }
 
@@ -921,8 +924,7 @@ nav:hover {
     nav {
         padding: 0.75rem 1.5rem;
         top: 0.5rem;
-        left: 0.5rem;
-        right: 0.5rem;
+        width: calc(100% - 1rem);
     }
     
     .nav-container {
@@ -941,9 +943,7 @@ nav:hover {
     
     .mobile-menu {
         top: 80px;
-        left: 0.5rem;
-        right: 0.5rem;
-        max-width: calc(100vw - 1rem);
+        width: calc(100% - 1rem);
     }
     
     .logo {
@@ -951,8 +951,10 @@ nav:hover {
     }
     
     .hero {
-        min-height: 100vh;
+        height: auto;
+        min-height: 100svh;
         padding-top: 120px;
+        padding-bottom: 60px;
     }
     
     .hero-content {
@@ -1077,16 +1079,16 @@ nav:hover {
 
     /* Prevent navigation hover effects on touch */
     nav:hover {
-        background: rgba(30, 58, 138, 0.95);
+        background: var(--pure-white);
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-        transform: none;
     }
 }
 
 .text-sized {
-    height: 16em;        
-    width: auto;       
-    vertical-align: baseline; 
+    height: clamp(90px, 22vw, 220px);
+    width: auto;
+    max-width: min(70vw, 320px);
+    vertical-align: middle;
 }
 
 /* Enhanced Form Styles */
